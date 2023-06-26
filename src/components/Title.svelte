@@ -1,9 +1,8 @@
 <script lang="ts">
-    const title: string = "What TODO? Svelte Edition"
 </script>
 
 <h1>
-    {title}
+    What TODO, <span class="svelteName">SVELTE</span> edition
 </h1>
 
 <style>
@@ -12,5 +11,11 @@
         background-color: hsl(11.87deg 93.81% 61.96%);
         width: 100%;
         text-align: center;
+        color: antiquewhite;
+        padding: 26px 0;
+        font-family: Overpass, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+    .svelteName {
+        letter-spacing: 4px;
     }
 </style>

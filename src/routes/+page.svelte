@@ -1,9 +1,9 @@
 <script>
     import AppContainer from "../layout/AppContainer.svelte";
     import Title from "../components/Title.svelte";
+	import GhLink from "../components/GHLink.svelte";
 </script>
-
-<AppContainer />
 <Title />
-
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<AppContainer>
+   <GhLink />
+</AppContainer>
