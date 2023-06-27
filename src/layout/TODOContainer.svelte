@@ -1,37 +1,43 @@
 <script lang="ts">
-	import TodoCard from '../components/TODOCard.svelte';
+	import TodoCards from '../components/card/TODOCards.svelte';
 
 	let todoValue: string;
-	const toDos: string[] = [];
+	let toDos: string[] = [];
 	const handleSubmit = () => {
-		console.log('pushing: ', todoValue, 'Into: ', toDos);
 		toDos.push(todoValue);
+		toDos = toDos;
 	};
-	$: console.log(toDos);
 </script>
 
 <div class="todo-container">
-	<input
-		type="text"
-		id="todo-input"
-		placeholder="TODO name"
-		bind:value={todoValue}
-		on:keydown={(e) => {
-			if (e.code === 'Enter') {
-				return handleSubmit();
-			}
-		}}
-	/>
-	<button on:click={handleSubmit}>Add TODO</button>
-	<TodoCard {toDos} />
+	<div class="input-container">
+		<input
+			type="text"
+			id="todo-input"
+			placeholder="TODO name"
+			bind:value={todoValue}
+			on:keydown={(e) => {
+				if (e.code === 'Enter') {
+					return handleSubmit();
+				}
+			}}
+		/>
+		<button on:click={handleSubmit}>Add TODO</button>
+	</div>
+	<TodoCards {toDos} />
 </div>
 
 <style>
-	.todo-container {
+	.input-container {
 		display: flex;
 		justify-content: center;
 	}
 	input {
 		margin-right: 16px;
+		font-size: 18px;
+	}
+	button {
+		font-size: 18px;
+		padding: 8px;
 	}
 </style>

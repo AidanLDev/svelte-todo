@@ -1,17 +1,23 @@
 <div class="container">
- <slot />  
+	<slot />
 </div>
 
 <style>
-    :global(html) {
-        border-top: 20px solid hsl(11.87deg 93.81% 61.96%);
-        border-bottom: 64px solid hsl(11.87deg 93.81% 61.96%);
-        height: 91vh;
-    }
-    :global(body) {
-        margin: 0;
-    }
-    .container {
-        padding: 2rem;
-    }
+	:global(html) {
+		border-top: 20px solid hsl(11.87deg 93.81% 61.96%);
+	}
+	:global(body) {
+		margin: 0;
+	}
+	:global(p) {
+		font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+			Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	}
+	:global(h1) {
+		font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+			Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	}
+	.container {
+		padding: 2rem;
+	}
 </style>
