@@ -1,3 +1,7 @@
+<script lang="ts">
+	import 'iconify-icon';
+</script>
+
 <div class="container">
 	<slot />
 </div>

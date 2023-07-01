@@ -4,8 +4,8 @@
 </script>
 
 <div class="card-container">
-	{#each toDos as todo}
-		<Card {todo} />
+	{#each toDos as todo, i}
+		<Card {todo} {i} bind:toDos />
 	{/each}
 </div>
 

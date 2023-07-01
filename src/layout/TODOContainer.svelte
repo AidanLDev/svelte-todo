@@ -6,6 +6,7 @@
 	const handleSubmit = () => {
 		toDos.push(todoValue);
 		toDos = toDos;
+		todoValue = '';
 	};
 </script>
 
