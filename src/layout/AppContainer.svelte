@@ -1,9 +1,11 @@
 <script lang="ts">
 	import 'iconify-icon';
+	// import Snackbars from '../components/Snackbars.svelte';
 </script>
 
 <div class="container">
 	<slot />
+	<!-- <Snackbars /> -->
 </div>
 
 <style>

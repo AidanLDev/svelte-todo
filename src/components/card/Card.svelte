@@ -2,10 +2,12 @@
 	import Tooltip from '../Tooltip.svelte';
 	import { handleKeyDown } from '../../lib/handleKeyDown';
 	import CardIcon from './CardIcon.svelte';
+	import type Snackbar from '@smui/snackbar';
 
 	export let todo: string;
 	export let i: number;
 	export let todos: string[];
+	export let actionedSnackbar: Snackbar;
 	let editText = false;
 
 	$: console.log(todos);
@@ -17,7 +19,13 @@
 		todos = todos;
 	};
 	const actionTodo = (toDoIndex: number) => {
+		actionedSnackbar.open();
 		todos.splice(toDoIndex, 1);
+		todos = todos;
+	};
+
+	const deleteTodo = (todoIndex: number) => {
+		todos.splice(todoIndex, 1);
 		todos = todos;
 	};
 </script>
@@ -30,8 +38,6 @@
 			action={() => actionTodo(i)}
 		/>
 	</Tooltip>
-	<!-- This <p> is interactive, as we want to be able to edit the text when clicked or when we hit Enter -->
-	<!-- Sorry a11y -->
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	{#if !editText}
@@ -44,6 +50,7 @@
 			<CardIcon action={toggleEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>
 	{/if}
+	<CardIcon action={() => deleteTodo(i)} className="delete-todo" icon="material-symbols:delete" />
 </div>
 
 <style>
@@ -63,5 +70,6 @@
 	input {
 		margin: 30px 12px;
 		font-size: 18px;
+		width: 100%;
 	}
 </style>

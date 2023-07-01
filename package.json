@@ -12,6 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@smui/snackbar": "7.0.0-beta.14",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"prettier": "^2.8.0",
@@ -24,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"iconify-icon": "^1.0.8"
+		"iconify-icon": "^1.0.8",
+		"svelte-material-ui": "7.0.0-beta.14"
 	}
 }

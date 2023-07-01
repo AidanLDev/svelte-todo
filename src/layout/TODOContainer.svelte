@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { handleKeyDown } from '$lib/handleKeyDown';
 	import TodoCards from '../components/card/TODOCards.svelte';
 
 	let todoValue: string;
 	let todos: string[] = [];
-	let completedTodos: string[];
 	const handleSubmit = () => {
 		todos.push(todoValue);
 		todos = todos;
@@ -18,11 +18,7 @@
 			id="todo-input"
 			placeholder="TODO name"
 			bind:value={todoValue}
-			on:keydown={(e) => {
-				if (e.code === 'Enter') {
-					return handleSubmit();
-				}
-			}}
+			on:keydown={(e) => handleKeyDown(e, handleSubmit)}
 		/>
 		<button on:click={handleSubmit}>Add TODO</button>
 	</div>

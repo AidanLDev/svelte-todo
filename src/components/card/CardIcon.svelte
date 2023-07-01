@@ -30,4 +30,8 @@
 	.action-todo {
 		padding: 0 12px;
 	}
+	.delete-todo {
+		margin-left: auto;
+		padding: 0 12px;
+	}
 </style>
