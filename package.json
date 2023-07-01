@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/supabase-js": "^2.26.0",
 		"iconify-icon": "^1.0.8",
 		"svelte-material-ui": "7.0.0-beta.14"
 	}
