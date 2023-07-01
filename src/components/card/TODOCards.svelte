@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Card from './Card.svelte';
-	export let toDos: string[];
+	export let todos: string[];
 </script>
 
 <div class="card-container">
-	{#each toDos as todo, i}
-		<Card {todo} {i} bind:toDos />
+	{#each todos as todo, i}
+		<Card {todo} {i} bind:todos />
 	{/each}
 </div>
 

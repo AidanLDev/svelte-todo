@@ -5,20 +5,20 @@
 
 	export let todo: string;
 	export let i: number;
-	export let toDos: string[];
+	export let todos: string[];
 	let editText = false;
 
-	$: console.log(toDos);
+	$: console.log(todos);
 
 	const toggleEdit = () => {
 		editText = !editText;
-		toDos[i] = todo;
+		todos[i] = todo;
 
-		toDos = toDos;
+		todos = todos;
 	};
 	const actionTodo = (toDoIndex: number) => {
-		toDos.splice(toDoIndex, 1);
-		toDos = toDos;
+		todos.splice(toDoIndex, 1);
+		todos = todos;
 	};
 </script>
 

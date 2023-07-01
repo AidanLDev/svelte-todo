@@ -2,10 +2,11 @@
 	import TodoCards from '../components/card/TODOCards.svelte';
 
 	let todoValue: string;
-	let toDos: string[] = [];
+	let todos: string[] = [];
+	let completedTodos: string[];
 	const handleSubmit = () => {
-		toDos.push(todoValue);
-		toDos = toDos;
+		todos.push(todoValue);
+		todos = todos;
 		todoValue = '';
 	};
 </script>
@@ -25,7 +26,7 @@
 		/>
 		<button on:click={handleSubmit}>Add TODO</button>
 	</div>
-	<TodoCards {toDos} />
+	<TodoCards {todos} />
 </div>
 
 <style>
