@@ -1,13 +1,21 @@
 <script lang="ts">
 	export let text: string;
+	import GhLink from './GHLink.svelte';
+	const isTODOPage = text === 'What TODO, ';
 </script>
 
-<h1>
-	{text}
-	{#if text === 'What TODO, '}
-		<span class="svelteName">SVELTE</span> edition
-	{/if}
-</h1>
+{#if isTODOPage}
+	<div>
+		<GhLink />
+		<h1>
+			{text} <span class="svelteName">SVELTE</span> edition
+		</h1>
+	</div>
+{:else}
+	<h1>
+		{text}
+	</h1>
+{/if}
 
 <style>
 	h1 {
