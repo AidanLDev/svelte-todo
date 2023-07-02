@@ -1,21 +1,24 @@
 <script lang="ts">
-	export let text: string;
+	// Getting page details
+	import { page } from '$app/stores';
+	$: path = $page.url.pathname;
 	import GhLink from './GHLink.svelte';
-	const isTODOPage = text === 'What TODO, ';
+	$: text =
+		path === '/register'
+			? 'Register'
+			: path === '/login'
+			? 'Login'
+			: path === '/todo' || '/'
+			? 'TODO! The Svelte edition'
+			: 'Where are we?';
 </script>
 
-{#if isTODOPage}
-	<div class="todo-title-container">
-		<GhLink />
-		<h1>
-			{text} <span class="svelteName">SVELTE</span> edition
-		</h1>
-	</div>
-{:else}
+<div class="todo-title-container">
+	<GhLink />
 	<h1>
 		{text}
 	</h1>
-{/if}
+</div>
 
 <style>
 	.todo-title-container {
@@ -31,8 +34,5 @@
 		padding: 26px 0;
 		font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 			Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	}
-	.svelteName {
-		letter-spacing: 4px;
 	}
 </style>

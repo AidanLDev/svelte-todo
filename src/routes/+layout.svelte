@@ -1,5 +1,7 @@
 <script lang="ts">
 	import 'iconify-icon';
+	import Title from '../components/Title.svelte';
+	import Nav from '../components/nav/Nav.svelte';
 
 	// Superbase stuff
 	import { onMount } from 'svelte';
@@ -18,6 +20,8 @@
 	});
 </script>
 
+<Title />
+<Nav />
 <slot />
 
 <style>
@@ -34,5 +38,11 @@
 	:global(h1) {
 		font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 			Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	}
+	:global(.container) {
+		padding: 2rem;
+	}
+	:global(.svelte-colour) {
+		color: hsl(11.87deg 93.81% 61.96%);
 	}
 </style>

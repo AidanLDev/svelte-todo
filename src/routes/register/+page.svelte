@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Title from '../../components/Title.svelte';
 </script>
 
 <main>
-	<Title text="Register" />
 	<form action="?/register" method="POST" class="auth-form">
 		<label for=""> Email </label>
 		<input type="text" name="email" />
