@@ -41,12 +41,14 @@
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	{#if !editText}
-		<p on:click={toggleEdit} on:keydown={(e) => handleKeyDown(e, toggleEdit)} tabindex={0}>
-			{todo}
-		</p>
+		<Tooltip title="Edit TODO">
+			<p on:click={toggleEdit} on:keydown={(e) => handleKeyDown(e, toggleEdit)} tabindex={0}>
+				{todo}
+			</p>
+		</Tooltip>
 	{:else}
 		<input bind:value={todo} />
-		<Tooltip title="Edit TODO">
+		<Tooltip title="Confirm edit">
 			<CardIcon action={toggleEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>
 	{/if}
