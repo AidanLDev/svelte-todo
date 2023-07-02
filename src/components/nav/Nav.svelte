@@ -1,11 +1,18 @@
 <script lang="ts">
+	// Getting page details
+	import { page } from '$app/stores';
+	let path: string;
+
+	$: path = $page.url.pathname;
 </script>
 
 <nav>
 	<ul>
 		<!-- If not logged in, they will see this -->
-		<a href="register">Login/Register</a>
-		<a href="todo">TODO</a>
+		<a class={`${path === '/register' || path === '/login' ? 'active' : ''}`} href="register"
+			>Login/Register</a
+		>
+		<a class={`${path === '/todo' ? 'active' : ''}`} href="todo">TODO</a>
 	</ul>
 </nav>
 
@@ -28,6 +35,10 @@
 		color: antiquewhite;
 	}
 	a:hover {
+		text-decoration: underline;
+	}
+	.active {
+		font-weight: 600;
 		text-decoration: underline;
 	}
 </style>

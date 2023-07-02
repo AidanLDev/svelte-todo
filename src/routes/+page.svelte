@@ -15,6 +15,11 @@
 			<img src="/svelte-logo.png" alt="Supabase logo" height="100px" width="100px" />
 			<img src="/supabase-logo.png" alt="Supabase logo" height="100px" width="100px" />
 		</div>
+		<div>
+			<a href="/register">
+				<button>Come on, create an account or Login</button>
+			</a>
+		</div>
 	</div>
 </main>
 

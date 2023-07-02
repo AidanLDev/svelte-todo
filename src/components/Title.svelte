@@ -9,7 +9,7 @@
 			: path === '/login'
 			? 'Login'
 			: path === '/todo' || '/'
-			? 'TODO! The Svelte edition'
+			? 'TODO!... Svelte edition'
 			: 'Where are we?';
 </script>
 
