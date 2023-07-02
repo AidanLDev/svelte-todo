@@ -5,7 +5,7 @@
 </script>
 
 {#if isTODOPage}
-	<div>
+	<div class="todo-title-container">
 		<GhLink />
 		<h1>
 			{text} <span class="svelteName">SVELTE</span> edition
@@ -18,6 +18,10 @@
 {/if}
 
 <style>
+	.todo-title-container {
+		display: flex;
+		background-color: hsl(11.87deg 93.81% 61.96%);
+	}
 	h1 {
 		margin-top: 0;
 		background-color: hsl(11.87deg 93.81% 61.96%);

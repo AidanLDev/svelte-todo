@@ -3,7 +3,7 @@
 </script>
 
 <a href="https://github.com/AidanLDev/svelte-todo" target="_blank">
-	<img src={gitHubLogo} alt="GitHub logo" height="100px" width="100px" />
+	<img src={gitHubLogo} alt="GitHub logo" height="80px" width="80px" />
 	<!-- Unsure if I want this text, the icon is kind of self explanatory -->
 	<!-- <p>View source code on GitHub</p> -->
 </a>
@@ -16,6 +16,7 @@
 		cursor: pointer;
 		display: flex;
 		gap: 12px;
+		padding: 0 12px;
 	}
 	p {
 		font-size: 20px;
