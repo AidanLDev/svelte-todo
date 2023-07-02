@@ -2,9 +2,7 @@
 	import 'iconify-icon';
 </script>
 
-<div class="container">
-	<slot />
-</div>
+<slot />
 
 <style>
 	:global(html) {
@@ -20,8 +18,5 @@
 	:global(h1) {
 		font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 			Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	}
-	.container {
-		padding: 2rem;
 	}
 </style>

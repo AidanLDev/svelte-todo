@@ -1,8 +1,12 @@
 <script lang="ts">
+	export let text: string;
 </script>
 
 <h1>
-	What TODO, <span class="svelteName">SVELTE</span> edition
+	{text}
+	{#if text === 'What TODO, '}
+		<span class="svelteName">SVELTE</span> edition
+	{/if}
 </h1>
 
 <style>
