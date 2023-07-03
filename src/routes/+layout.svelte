@@ -1,7 +1,6 @@
 <script lang="ts">
 	import 'iconify-icon';
 	import Title from '../components/Title.svelte';
-	import Nav from '../components/nav/Nav.svelte';
 
 	// Superbase stuff
 	import { onMount } from 'svelte';
@@ -21,7 +20,6 @@
 </script>
 
 <Title />
-<Nav />
 <slot />
 
 <style>

@@ -4,15 +4,22 @@
 	let path: string;
 
 	$: path = $page.url.pathname;
+
+	import type { PageData } from '../../routes/$types';
+
+	export let data: PageData;
 </script>
 
 <nav>
 	<ul>
 		<!-- If not logged in, they will see this -->
-		<a class={`${path === '/register' || path === '/login' ? 'active' : ''}`} href="register"
-			>Login/Register</a
-		>
-		<a class={`${path === '/todo' ? 'active' : ''}`} href="todo">TODO</a>
+		{#if !data?.session}
+			<a class={`${path === '/register' || path === '/login' ? 'active' : ''}`} href="register"
+				>Login/Register</a
+			>
+		{:else}
+			<form action="/logout" method="POST"><button type="submit">Logout</button></form>
+		{/if}
 	</ul>
 </nav>
 

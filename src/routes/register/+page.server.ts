@@ -22,7 +22,7 @@ export const actions: Actions = {
 			})
 		}
 
-		throw redirect(303, "/todo")
+		throw redirect(303, "/")
 		
 	},
 }

@@ -1,26 +1,33 @@
 <script lang="ts">
+	import TodoContainer from '../layout/TODOContainer.svelte';
+	import Nav from '../components/nav/Nav.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
 
+<Nav {data} />
 <main>
-	<div class="container index-container">
-		<p>Login or Register and to get cracking and create some tasks!</p>
-		<p>
-			Brought to you by the power of <span class="svelte-colour">Svelte</span> and
-			<span class="supabase-colour">Supabase</span>
-		</p>
-		<div>
-			<img src="/svelte-logo.png" alt="Supabase logo" height="100px" width="100px" />
-			<img src="/supabase-logo.png" alt="Supabase logo" height="100px" width="100px" />
+	{#if !data?.session}
+		<div class="container index-container">
+			<p>Login or Register and to get cracking and create some tasks!</p>
+			<p>
+				Brought to you by the power of <span class="svelte-colour">Svelte</span> and
+				<span class="supabase-colour">Supabase</span>
+			</p>
+			<div>
+				<img src="/svelte-logo.png" alt="Supabase logo" height="100px" width="100px" />
+				<img src="/supabase-logo.png" alt="Supabase logo" height="100px" width="100px" />
+			</div>
+			<div>
+				<a href="/register">
+					<button>Come on, create an account or Login</button>
+				</a>
+			</div>
 		</div>
-		<div>
-			<a href="/register">
-				<button>Come on, create an account or Login</button>
-			</a>
-		</div>
-	</div>
+	{:else}
+		<TodoContainer />
+	{/if}
 </main>
 
 <style>
