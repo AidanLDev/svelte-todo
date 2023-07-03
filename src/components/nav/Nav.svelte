@@ -14,11 +14,12 @@
 	<ul>
 		<!-- If not logged in, they will see this -->
 		{#if !data?.session}
-			<a class={`${path === '/register' || path === '/login' ? 'active' : ''}`} href="register"
-				>Login/Register</a
-			>
+			<a class={`${path === '/register' ? 'active' : ''}`} href="register">Register</a>
+			<a class={`${path === '/login' ? 'active' : ''}`} href="login">Login</a>
 		{:else}
-			<form action="/logout" method="POST"><button type="submit">Logout</button></form>
+			<form action="/logout" method="POST">
+				<button type="submit">Logout</button>
+			</form>
 		{/if}
 	</ul>
 </nav>

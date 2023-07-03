@@ -4,6 +4,8 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	$: console.log('data: ', data);
 </script>
 
 <Nav {data} />
@@ -11,6 +13,7 @@
 	{#if !data?.session}
 		<div class="container index-container">
 			<p>Login or Register and to get cracking and create some tasks!</p>
+			<p>Once registered, check your email and <b>confirm</b> your signup</p>
 			<p>
 				Brought to you by the power of <span class="svelte-colour">Svelte</span> and
 				<span class="supabase-colour">Supabase</span>
@@ -18,11 +21,6 @@
 			<div>
 				<img src="/svelte-logo.png" alt="Supabase logo" height="100px" width="100px" />
 				<img src="/supabase-logo.png" alt="Supabase logo" height="100px" width="100px" />
-			</div>
-			<div>
-				<a href="/register">
-					<button>Come on, create an account or Login</button>
-				</a>
 			</div>
 		</div>
 	{:else}
