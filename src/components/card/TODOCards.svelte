@@ -2,12 +2,13 @@
 	import Card from './Card.svelte';
 	import Snackbar, { Label } from '@smui/snackbar';
 	export let todos: string[];
+	export let userId: string | undefined = undefined;
 	let actionedSnackbar: Snackbar;
 </script>
 
 <div class="card-container">
 	{#each todos as todo, i}
-		<Card {todo} {i} bind:todos {actionedSnackbar} />
+		<Card {todo} id={todo.id || i} bind:todos {actionedSnackbar} {userId} />
 	{/each}
 	<Snackbar bind:this={actionedSnackbar} class="success">
 		<Label>Task complete</Label>

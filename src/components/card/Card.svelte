@@ -3,18 +3,20 @@
 	import { handleKeyDown } from '../../lib/handleKeyDown';
 	import CardIcon from './CardIcon.svelte';
 	import type Snackbar from '@smui/snackbar';
+	import { supabaseClient } from '$lib/supabase';
 
 	export let todo: string;
-	export let i: number;
+	export let id: string | number;
 	export let todos: string[];
 	export let actionedSnackbar: Snackbar;
+	export let userId: string | undefined = undefined;
 	let editText = false;
 
 	$: console.log(todos);
 
 	const toggleEdit = () => {
 		editText = !editText;
-		todos[i] = todo;
+		todos[id] = todo;
 
 		todos = todos;
 	};
@@ -35,7 +37,7 @@
 		<CardIcon
 			className="action-todo"
 			icon="material-symbols:circle-outline"
-			action={() => actionTodo(i)}
+			action={() => actionTodo(id)}
 		/>
 	</Tooltip>
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -52,7 +54,7 @@
 			<CardIcon action={toggleEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>
 	{/if}
-	<CardIcon action={() => deleteTodo(i)} className="delete-todo" icon="material-symbols:delete" />
+	<CardIcon action={() => deleteTodo(id)} className="delete-todo" icon="material-symbols:delete" />
 </div>
 
 <style>
