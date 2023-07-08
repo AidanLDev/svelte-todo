@@ -4,15 +4,7 @@
 	import TodoCards from '../components/card/TODOCards.svelte';
 	import { onMount } from 'svelte';
 	import type { PostgrestSingleResponse } from '@supabase/supabase-js';
-
-	interface todoItem {
-		todo: string;
-		completed_at?: string;
-		created_at?: string;
-		edited_at?: string;
-		id?: number;
-		user_id?: string;
-	}
+	import type { todoItem } from '../interfaces/todoInterface';
 
 	let todoValue: string;
 	let todos: todoItem[] = [];
@@ -34,17 +26,27 @@
 
 	export let userId: string | undefined = undefined;
 	const handleSubmit = async () => {
-		const { data, error } = await supabaseClient
-			.from('Todos')
-			.insert([{ todo: todoValue, user_id: userId }])
-			.select();
+		if (userId) {
+			const { data, error } = await supabaseClient
+				.from('Todos')
+				.insert([{ todo: todoValue, user_id: userId }])
+				.select();
 
-		console.log('from Supabase Todos insert: ', { data, error });
-		if (todos !== null) {
-			todos.push({ todo: todoValue });
-			todos = todos;
-			todoValue = '';
+			if (error) {
+				console.error('Error submitting TODO: ', error);
+			}
+
+			if (data) {
+				todos.push(...data);
+			}
+		} else {
+			// No authenticated usesr, just push the todo value
+			if (todos !== null) {
+				todos.push({ todo: todoValue });
+			}
 		}
+		todos = todos;
+		todoValue = '';
 	};
 </script>
 

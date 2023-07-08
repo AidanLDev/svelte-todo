@@ -3,11 +3,13 @@
 	import { handleKeyDown } from '../../lib/handleKeyDown';
 	import CardIcon from './CardIcon.svelte';
 	import type Snackbar from '@smui/snackbar';
+	import type { todoItem } from '../../interfaces/todoInterface';
 	import { supabaseClient } from '$lib/supabase';
 
-	export let todo: string;
-	export let id: string | number;
-	export let todos: string[];
+	export let todo: todoItem;
+	export let id: number;
+	export let index: number;
+	export let todos: todoItem[];
 	export let actionedSnackbar: Snackbar;
 	export let userId: string | undefined = undefined;
 	let editText = false;
@@ -20,14 +22,37 @@
 
 		todos = todos;
 	};
-	const actionTodo = (toDoIndex: number) => {
-		actionedSnackbar.open();
-		todos.splice(toDoIndex, 1);
-		todos = todos;
+	const actionTodo = async (toDoIndex: number) => {
+		const { data, error } = await supabaseClient
+			.from('Todos')
+			.update({ completed_at: new Date() })
+			.eq('id', id);
+
+		if (error) {
+			console.error('Action todo failed: ', error);
+		} else {
+			actionedSnackbar.open();
+			if (!id) {
+				todos.splice(toDoIndex, 1);
+			} else {
+				const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
+				todos.splice(arrayIndexToRemove, 1);
+			}
+			todos = todos;
+		}
 	};
 
-	const deleteTodo = (todoIndex: number) => {
-		todos.splice(todoIndex, 1);
+	const deleteTodo = async (todoIndex: number) => {
+		const { data, error } = await supabaseClient.from('Todos').delete().eq('id', id).select();
+
+		// If there's no ID it must be from someone non authenticated
+		if (!id) {
+			todos.splice(todoIndex, 1);
+		} else if (error === null) {
+			//	No error and there's an ID
+			const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
+			todos.splice(arrayIndexToRemove, 1);
+		}
 		todos = todos;
 	};
 </script>
@@ -45,11 +70,11 @@
 	{#if !editText}
 		<Tooltip title="Edit TODO">
 			<p on:click={toggleEdit} on:keydown={(e) => handleKeyDown(e, toggleEdit)} tabindex={0}>
-				{todo}
+				{todo.todo}
 			</p>
 		</Tooltip>
 	{:else}
-		<input bind:value={todo} />
+		<input bind:value={todo.todo} />
 		<Tooltip title="Confirm edit">
 			<CardIcon action={toggleEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>

@@ -1,14 +1,17 @@
 <script lang="ts">
 	import Card from './Card.svelte';
 	import Snackbar, { Label } from '@smui/snackbar';
-	export let todos: string[];
+	import type { todoItem } from '../../interfaces/todoInterface';
+	export let todos: todoItem[];
 	export let userId: string | undefined = undefined;
 	let actionedSnackbar: Snackbar;
 </script>
 
 <div class="card-container">
 	{#each todos as todo, i}
-		<Card {todo} id={todo.id || i} bind:todos {actionedSnackbar} {userId} />
+		{#if todo.completed_at === null || todo.completed_at === undefined}
+			<Card {todo} id={todo.id || i} index={i} bind:todos {actionedSnackbar} {userId} />
+		{/if}
 	{/each}
 	<Snackbar bind:this={actionedSnackbar} class="success">
 		<Label>Task complete</Label>
