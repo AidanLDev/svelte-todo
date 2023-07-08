@@ -55,6 +55,13 @@
 		}
 		todos = todos;
 	};
+
+	const confirmEdit = async () => {
+		editText = !editText;
+		todos[id] = todo;
+
+		todos = todos;
+	};
 </script>
 
 <div class="card">
@@ -76,7 +83,7 @@
 	{:else}
 		<input bind:value={todo.todo} />
 		<Tooltip title="Confirm edit">
-			<CardIcon action={toggleEdit} icon="mdi:tick" className="edit-todo" />
+			<CardIcon action={confirmEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>
 	{/if}
 	<CardIcon action={() => deleteTodo(id)} className="delete-todo" icon="material-symbols:delete" />
