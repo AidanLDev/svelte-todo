@@ -15,11 +15,8 @@
 
 	onMount(async () => {
 		const response = await supabaseClient.from('Todos').select().eq('user_id', userId);
-		console.log('in onMount(): ', response);
-
 		if (isPostgrestSuccess(response) && response.data !== null) {
 			todos = response.data;
-			console.log('Is successful');
 			todos = todos;
 		}
 	});
@@ -40,7 +37,7 @@
 				todos.push(...data);
 			}
 		} else {
-			// No authenticated usesr, just push the todo value
+			// Not an authenticated user, just push the todo value
 			if (todos !== null) {
 				todos.push({ todo: todoValue });
 			}

@@ -14,13 +14,8 @@
 	export let userId: string | undefined = undefined;
 	let editText = false;
 
-	$: console.log(todos);
-
 	const toggleEdit = () => {
 		editText = !editText;
-		todos[id] = todo;
-
-		todos = todos;
 	};
 	const actionTodo = async (toDoIndex: number) => {
 		const { data, error } = await supabaseClient
@@ -58,7 +53,16 @@
 
 	const confirmEdit = async () => {
 		editText = !editText;
-		todos[id] = todo;
+		if (!userId) {
+			todos[id] = todo;
+		} else {
+			await supabaseClient
+				.from('Todos')
+				.update({ edited_at: new Date(), todo: todo.todo })
+				.eq('id', id);
+
+			todo.todo = todo.todo; //	Updating the local state
+		}
 
 		todos = todos;
 	};
@@ -81,7 +85,7 @@
 			</p>
 		</Tooltip>
 	{:else}
-		<input bind:value={todo.todo} />
+		<input bind:value={todo.todo} on:keydown={(e) => handleKeyDown(e, confirmEdit)} />
 		<Tooltip title="Confirm edit">
 			<CardIcon action={confirmEdit} icon="mdi:tick" className="edit-todo" />
 		</Tooltip>
