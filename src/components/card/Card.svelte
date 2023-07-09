@@ -35,18 +35,18 @@
 				setTimeout(() => {
 					todos.splice(toDoIndex, 1);
 					todos = todos;
-				}, 1000);
+				}, 2000);
 			} else {
 				const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
 				setTimeout(() => {
 					todos.splice(arrayIndexToRemove, 1);
 					todos = todos;
-				}, 1000);
+				}, 2000);
 			}
 		}
 		setTimeout(() => {
 			removing = false;
-		}, 1000);
+		}, 2000);
 	};
 
 	const deleteTodo = async (todoIndex: number) => {
@@ -84,7 +84,7 @@
 	<Tooltip title="Complete TODO">
 		<CardIcon
 			className="action-todo"
-			icon="material-symbols:circle-outline"
+			icon={removing ? 'material-symbols:check-circle' : 'material-symbols:circle-outline'}
 			action={() => actionTodo(id)}
 		/>
 	</Tooltip>
@@ -126,7 +126,7 @@
 		align-items: center;
 	}
 	.removing {
-		animation: fly-out 1s forwards;
+		animation: fly-out 2s forwards;
 	}
 	p {
 		padding: 12px;
