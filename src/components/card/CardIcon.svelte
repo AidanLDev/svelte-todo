@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { handleKeyDown } from '../../lib/handleKeyDown';
 
-	export let action: () => void;
+	export let action: () => void = () => console.log('Editing TODO');
 	export let icon: string;
 	export let className: string;
 </script>

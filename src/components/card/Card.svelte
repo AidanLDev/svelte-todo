@@ -85,9 +85,16 @@
 			</p>
 		</Tooltip>
 	{:else}
-		<input bind:value={todo.todo} on:keydown={(e) => handleKeyDown(e, confirmEdit)} />
-		<Tooltip title="Confirm edit">
-			<CardIcon action={confirmEdit} icon="mdi:tick" className="edit-todo" />
+		<input
+			bind:value={todo.todo}
+			on:keydown={todo.todo.length > 1000
+				? () => console.log('todo too big')
+				: (e) => handleKeyDown(e, confirmEdit)}
+		/>
+		<Tooltip title={todo.todo.length > 1000 ? 'TODO too big' : 'Confirm edit'}>
+			<button disabled={todo.todo.length > 1000} on:click={confirmEdit}
+				><CardIcon icon="mdi:tick" className="edit-todo" /></button
+			>
 		</Tooltip>
 	{/if}
 	<CardIcon action={() => deleteTodo(id)} className="delete-todo" icon="material-symbols:delete" />
@@ -111,5 +118,8 @@
 		margin: 30px 12px;
 		font-size: 18px;
 		width: 100%;
+	}
+	button {
+		all: unset;
 	}
 </style>

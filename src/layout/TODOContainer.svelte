@@ -14,7 +14,7 @@
 	}
 
 	onMount(async () => {
-		const response = await supabaseClient.from('Todos').select().eq('user_id', userId);
+		const response = await supabaseClient.from('Todos').select().eq('user_id', userId).order('id');
 		if (isPostgrestSuccess(response) && response.data !== null) {
 			todos = response.data;
 			todos = todos;
@@ -23,6 +23,10 @@
 
 	export let userId: string | undefined = undefined;
 	const handleSubmit = async () => {
+		if (!todoValue || todoValue.length > 1000) {
+			return;
+		}
+
 		if (userId) {
 			const { data, error } = await supabaseClient
 				.from('Todos')
@@ -56,7 +60,9 @@
 			bind:value={todoValue}
 			on:keydown={(e) => handleKeyDown(e, handleSubmit)}
 		/>
-		<button on:click={handleSubmit}>Add TODO</button>
+		<button on:click={handleSubmit} disabled={!todoValue || todoValue.length > 1000}
+			>Add TODO</button
+		>
 	</div>
 	<TodoCards {todos} {userId} />
 </div>
