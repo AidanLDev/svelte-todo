@@ -11,7 +11,10 @@
 	{#if !data?.session}
 		<div class="container index-container">
 			<p>Login or Register and to get save your tasks! Or just play around without saving</p>
-			<p>Once registered, check your email and <b>confirm</b> your signup</p>
+			<p>
+				Once registered, check your email and <b>confirm</b> your signup.
+				<i>Sometimes you need to refresh the page after confirming.</i>
+			</p>
 		</div>
 		<TodoContainer />
 	{:else}

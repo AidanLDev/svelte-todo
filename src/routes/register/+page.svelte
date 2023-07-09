@@ -1,22 +1,19 @@
 <script lang="ts">
 	import Nav from '../../components/nav/Nav.svelte';
 	import type { PageData } from './$types';
+	import { emailRegex } from '$lib/validationHelper';
+	import EmailPassword from '../../components/EmailPassword.svelte';
 
 	export let data: PageData;
+	let email: string = '';
+	let password: string = '';
+	$: disabled = !emailRegex.test(email) || password.length < 3;
+	let buttonLabel: string = 'Register';
 </script>
 
 <Nav {data} />
 <main>
 	<form action="?/register" method="POST" class="auth-form">
-		<label for=""> Email </label>
-		<input type="text" name="email" />
-		<label for=""> Password </label>
-		<input type="password" name="password" />
-		<button class="btn btn-primary">Register</button>
+		<EmailPassword bind:email bind:password bind:disabled {buttonLabel} />
 	</form>
 </main>
-
-<style>
-	.auth-form {
-	}
-</style>
