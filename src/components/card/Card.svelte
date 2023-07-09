@@ -150,4 +150,10 @@
 			opacity: 0;
 		}
 	}
+
+	@media (max-width: 500px) {
+		.card {
+			width: 100%;
+		}
+	}
 </style>
