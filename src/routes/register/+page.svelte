@@ -12,8 +12,17 @@
 </script>
 
 <Nav {data} />
-<main>
+<main class="container">
 	<form action="?/register" method="POST" class="auth-form">
 		<EmailPassword bind:email bind:password bind:disabled {buttonLabel} />
 	</form>
 </main>
+
+<style>
+	.auth-form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+	}
+</style>

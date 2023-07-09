@@ -5,6 +5,7 @@
 	import type Snackbar from '@smui/snackbar';
 	import type { todoItem } from '../../interfaces/todoInterface';
 	import { supabaseClient } from '$lib/supabase';
+	import { clickOutside } from '$lib/clickOutside';
 
 	export let todo: todoItem;
 	export let id: number;
@@ -90,6 +91,8 @@
 			on:keydown={todo.todo.length > 1000
 				? () => console.log('todo too big')
 				: (e) => handleKeyDown(e, confirmEdit)}
+			use:clickOutside
+			on:outclick={toggleEdit}
 		/>
 		<Tooltip title={todo.todo.length > 1000 ? 'TODO too big' : 'Confirm edit'}>
 			<button disabled={todo.todo.length > 1000} on:click={confirmEdit}
@@ -103,7 +106,7 @@
 <style>
 	.card {
 		width: 60%;
-		background-color: antiquewhite;
+		background-color: #f96743;
 		min-height: 32px;
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		margin: 24px 0;
@@ -113,6 +116,7 @@
 	}
 	p {
 		padding: 12px;
+		color: #fff;
 	}
 	input {
 		margin: 30px 12px;

@@ -7,9 +7,9 @@
 </script>
 
 <Nav {data} />
-<main>
+<main class="container">
 	{#if !data?.session}
-		<div class="container index-container">
+		<div class="index-container">
 			<p>Login or Register and to get save your tasks! Or just play around without saving</p>
 			<p>
 				Once registered, check your email and <b>confirm</b> your signup.

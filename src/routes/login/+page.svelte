@@ -9,10 +9,11 @@
 	let password: string = '';
 	$: disabled = !emailRegex.test(email) || password.length < 3;
 	let buttonLabel: string = 'Login';
+	$: console.log(data);
 </script>
 
 <Nav {data} />
-<main>
+<main class="container">
 	<form action="?/login" method="POST" class="auth-form">
 		<EmailPassword bind:email bind:password bind:disabled {buttonLabel} />
 	</form>
@@ -20,5 +21,9 @@
 
 <style>
 	.auth-form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
 	}
 </style>

@@ -14,6 +14,7 @@
 	<ul>
 		<!-- If not logged in, they will see this -->
 		{#if !data?.session}
+			<a class={`${path === '/' ? 'active' : ''}`} href="/">Home</a>
 			<a class={`${path === '/register' ? 'active' : ''}`} href="register">Register</a>
 			<a class={`${path === '/login' ? 'active' : ''}`} href="login">Login</a>
 		{:else}

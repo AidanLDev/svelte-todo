@@ -29,9 +29,11 @@
 	}
 	.action-todo {
 		padding: 0 12px;
+		color: #666666;
 	}
 	.delete-todo {
 		margin-left: auto;
 		padding: 0 12px;
+		color: #666666;
 	}
 </style>
