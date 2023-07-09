@@ -8,7 +8,7 @@
 </script>
 
 <div class="card-container">
-	{#each todos as todo, i}
+	{#each todos as todo, i (`${todo.id}__${i}`)}
 		{#if todo.completed_at === null || todo.completed_at === undefined}
 			<Card {todo} id={todo.id || i} index={i} bind:todos {actionedSnackbar} {userId} />
 		{/if}

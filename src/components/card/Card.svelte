@@ -13,6 +13,8 @@
 	export let todos: todoItem[];
 	export let actionedSnackbar: Snackbar;
 	export let userId: string | undefined = undefined;
+
+	let removing = false;
 	let editText = false;
 
 	const toggleEdit = () => {
@@ -27,15 +29,24 @@
 		if (error) {
 			console.error('Action todo failed: ', error);
 		} else {
+			removing = true;
 			actionedSnackbar.open();
 			if (!id) {
-				todos.splice(toDoIndex, 1);
+				setTimeout(() => {
+					todos.splice(toDoIndex, 1);
+					todos = todos;
+				}, 1000);
 			} else {
 				const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
-				todos.splice(arrayIndexToRemove, 1);
+				setTimeout(() => {
+					todos.splice(arrayIndexToRemove, 1);
+					todos = todos;
+				}, 1000);
 			}
-			todos = todos;
 		}
+		setTimeout(() => {
+			removing = false;
+		}, 1000);
 	};
 
 	const deleteTodo = async (todoIndex: number) => {
@@ -69,7 +80,7 @@
 	};
 </script>
 
-<div class="card">
+<div class={`card ${removing ? 'removing' : ''}`}>
 	<Tooltip title="Complete TODO">
 		<CardIcon
 			className="action-todo"
@@ -114,6 +125,9 @@
 		display: flex;
 		align-items: center;
 	}
+	.removing {
+		animation: fly-out 1s forwards;
+	}
 	p {
 		padding: 12px;
 		color: #fff;
@@ -125,5 +139,15 @@
 	}
 	button {
 		all: unset;
+	}
+	@keyframes fly-out {
+		from {
+			transform: translate(0, 0);
+			opacity: 1;
+		}
+		to {
+			transform: translate(0, -1000px);
+			opacity: 0;
+		}
 	}
 </style>
