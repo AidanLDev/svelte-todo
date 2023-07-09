@@ -10,7 +10,7 @@
 <div class="card-container">
 	{#each todos as todo, i (`${todo.id}__${i}`)}
 		{#if todo.completed_at === null || todo.completed_at === undefined}
-			<Card {todo} id={todo.id || i} index={i} bind:todos {actionedSnackbar} {userId} />
+			<Card {todo} id={todo.id || i} bind:todos {actionedSnackbar} {userId} />
 		{/if}
 	{/each}
 	<Snackbar bind:this={actionedSnackbar} class="success">

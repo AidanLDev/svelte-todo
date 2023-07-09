@@ -26,9 +26,6 @@
 	p {
 		font-size: 18px;
 	}
-	.supabase-colour {
-		color: #3ecf8e;
-	}
 	.index-container {
 		display: flex;
 		flex-direction: column;

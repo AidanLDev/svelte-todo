@@ -9,7 +9,6 @@
 
 	export let todo: todoItem;
 	export let id: number;
-	export let index: number;
 	export let todos: todoItem[];
 	export let actionedSnackbar: Snackbar;
 	export let userId: string | undefined = undefined;
@@ -98,12 +97,12 @@
 		</Tooltip>
 	{:else}
 		<input
+			on:outclick={toggleEdit}
 			bind:value={todo.todo}
 			on:keydown={todo.todo.length > 1000
 				? () => console.log('todo too big')
 				: (e) => handleKeyDown(e, confirmEdit)}
 			use:clickOutside
-			on:outclick={toggleEdit}
 		/>
 		<Tooltip title={todo.todo.length > 1000 ? 'TODO too big' : 'Confirm edit'}>
 			<button disabled={todo.todo.length > 1000} on:click={confirmEdit}

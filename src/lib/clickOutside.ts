@@ -1,7 +1,7 @@
-export const clickOutside = node => {
-  const handleClick = e => {
+export const clickOutside = (node:HTMLElement) => {
+  const handleClick = (e: MouseEvent) => {
     // check if the node contains the target of the event
-    if (!node.contains(e.target)) {
+    if (!node.contains(e.target as HTMLElement)) {
       setTimeout(() => {
         node.dispatchEvent(new CustomEvent('outclick'))
       }, 100) 

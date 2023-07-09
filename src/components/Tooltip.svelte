@@ -1,15 +1,20 @@
-<script>
+<script lang="ts">
+	import type { MouseEventHandler } from 'svelte/elements';
+
 	export let title = '';
 	let isHovered = false;
-	let x;
-	let y;
+	let x: number;
+	let y: number;
 
-	function mouseOver(event) {
+	function mouseOver(event: MouseEvent) {
 		isHovered = true;
 		x = event.pageX + 5;
 		y = event.pageY + 5;
 	}
-	function mouseMove(event) {
+	function focusMouse() {
+		isHovered = true;
+	}
+	function mouseMove(event: MouseEvent) {
 		x = event.pageX + 5;
 		y = event.pageY + 5;
 	}
@@ -22,7 +27,7 @@
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
 	on:mousemove={mouseMove}
-	on:focus={mouseOver}
+	on:focus={focusMouse}
 	on:blur={mouseLeave}
 	aria-roledescription={`Tooltip reading ${title}`}
 	role="text"

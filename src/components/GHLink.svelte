@@ -18,11 +18,4 @@
 		gap: 12px;
 		padding: 0 12px;
 	}
-	p {
-		font-size: 20px;
-		text-decoration: none;
-	}
-	p:hover {
-		text-decoration: underline;
-	}
 </style>
