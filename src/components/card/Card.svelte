@@ -2,7 +2,6 @@
 	import Tooltip from '../Tooltip.svelte';
 	import { handleKeyDown } from '../../lib/handleKeyDown';
 	import CardIcon from './CardIcon.svelte';
-	import type Snackbar from '@smui/snackbar';
 	import type { todoItem } from '../../interfaces/todoInterface';
 	import { supabaseClient } from '$lib/supabase';
 	import { clickOutside } from '$lib/clickOutside';
@@ -10,7 +9,6 @@
 	export let todo: todoItem;
 	export let id: number;
 	export let todos: todoItem[];
-	export let actionedSnackbar: Snackbar;
 	export let userId: string | undefined = undefined;
 
 	let removing = false;
@@ -29,7 +27,6 @@
 			console.error('Action todo failed: ', error);
 		} else {
 			removing = true;
-			actionedSnackbar.open();
 			if (!id) {
 				setTimeout(() => {
 					todos.splice(toDoIndex, 1);
