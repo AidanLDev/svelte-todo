@@ -9,7 +9,6 @@
 	let password: string = '';
 	$: disabled = !emailRegex.test(email) || password.length < 3;
 	let buttonLabel: string = 'Login';
-	$: console.log(data);
 </script>
 
 <Nav {data} />
