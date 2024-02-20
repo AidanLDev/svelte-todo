@@ -59,15 +59,16 @@
 			setTimeout(() => {
 				todos.splice(todoIndex, 1);
 				deleting = false;
+				todos = todos;
 			}, 2000)
 		} else if (error === null) {
 			//	No error and there's an ID
 			const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
 			setTimeout(() => {
 				todos.splice(arrayIndexToRemove, 1);
+				todos = todos;
 			}, 2000)
 		}
-		todos = todos;
 	};
 
 	const confirmEdit = async () => {
