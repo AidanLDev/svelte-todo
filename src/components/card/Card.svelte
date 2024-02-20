@@ -13,6 +13,7 @@
 
 	let removing = false;
 	let editText = false;
+	let deleting = false;
 
 	const toggleEdit = () => {
 		editText = !editText;
@@ -31,30 +32,40 @@
 				setTimeout(() => {
 					todos.splice(toDoIndex, 1);
 					todos = todos;
+					removing = false;
 				}, 2000);
 			} else {
 				const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
 				setTimeout(() => {
 					todos.splice(arrayIndexToRemove, 1);
 					todos = todos;
+					removing = false;
 				}, 2000);
 			}
 		}
-		setTimeout(() => {
-			removing = false;
-		}, 2000);
 	};
 
 	const deleteTodo = async (todoIndex: number) => {
 		const { data, error } = await supabaseClient.from('Todos').delete().eq('id', id).select();
 
+		if (error) {
+			console.error('Deleting toto failed: ', error);
+		}
+
+		deleting = true;
+
 		// If there's no ID it must be from someone non authenticated
 		if (!id) {
-			todos.splice(todoIndex, 1);
+			setTimeout(() => {
+				todos.splice(todoIndex, 1);
+				deleting = false;
+			}, 2000)
 		} else if (error === null) {
 			//	No error and there's an ID
 			const arrayIndexToRemove = todos.findIndex((item) => item.id === id);
-			todos.splice(arrayIndexToRemove, 1);
+			setTimeout(() => {
+				todos.splice(arrayIndexToRemove, 1);
+			}, 2000)
 		}
 		todos = todos;
 	};
@@ -76,7 +87,7 @@
 	};
 </script>
 
-<div class={`card ${removing ? 'removing' : ''}`}>
+<div class={`card ${removing ? 'removing' : ''} ${deleting ? 'deleting' : ''}`}>
 	<Tooltip title="Complete TODO">
 		<CardIcon
 			className="action-todo"
@@ -84,8 +95,6 @@
 			action={() => actionTodo(id)}
 		/>
 	</Tooltip>
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	{#if !editText}
 		<Tooltip title="Edit TODO">
 			<p on:click={toggleEdit} on:keydown={(e) => handleKeyDown(e, toggleEdit)} tabindex={0}>
@@ -124,6 +133,9 @@
 	.removing {
 		animation: fly-out 2s forwards;
 	}
+	.deleting {
+		animation: fly-down 2s forwards;
+	}
 	p {
 		padding: 12px;
 		color: #fff;
@@ -142,7 +154,18 @@
 			opacity: 1;
 		}
 		to {
-			transform: translate(0, -1000px);
+			transform: translate(0, -200%);
+			opacity: 0;
+		}
+	}
+
+	@keyframes fly-down {
+		from {
+			transform: translate(0, 0);
+			opacity: 1;
+		}
+		to {
+			transform: translate(0, 200%);
 			opacity: 0;
 		}
 	}
